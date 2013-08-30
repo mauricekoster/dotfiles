@@ -1,10 +1,13 @@
-" vim: nowrap fdm=marker
+" vim: nowrap fdm=marker fenc=utf-8
 set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
 " Plugins ---------------------------------------------------- {{{
+let g:airline#extensions#branch#enabled = 1
+" let g:airline#extensions#branch#empty_message = ''
+
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
@@ -33,7 +36,8 @@ endfunction
 " Settings --------------------------------------------------- {{{
 set nu
 set ruler
-
+set fileencoding=utf-8
+set encoding=utf-8
 set nobackup
 
 set hls
@@ -97,7 +101,7 @@ function! MyFoldText() " {{{
 
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '€¦' . repeat(" ",fillcharcount) . foldedlinecount . '€¦' . ' '
+    return line . 'Â€Â¦' . repeat(" ",fillcharcount) . foldedlinecount . 'Â€Â¦' . ' '
 endfunction " }}}
 set foldtext=MyFoldText()
 

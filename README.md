@@ -24,3 +24,8 @@ Create a $HOME\_vimrc with this content:
 
 	nmap <leader>v :tabedit $HOME\dotfiles\vimrc<CR>
 
+### Updating modules
+
+Inside ~/.vim or $HOME\\dotfiles:
+
+    git submodule foreach git pull
