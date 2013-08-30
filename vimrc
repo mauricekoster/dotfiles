@@ -39,7 +39,6 @@ set nobackup
 set hls
 
 set incsearch
-set ff=unix
 set nobackup
 set tabstop=4
 set expandtab
@@ -98,7 +97,7 @@ function! MyFoldText() " {{{
 
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . 'â€¦' . repeat(" ",fillcharcount) . foldedlinecount . 'â€¦' . ' '
+    return line . '€¦' . repeat(" ",fillcharcount) . foldedlinecount . '€¦' . ' '
 endfunction " }}}
 set foldtext=MyFoldText()
 
