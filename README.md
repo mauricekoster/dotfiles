@@ -20,12 +20,19 @@ dotfiles for vim, bash etc
 Create a $HOME\_vimrc with this content:
 
 	set runtimepath=$HOME\dotfiles,$VIMRUNTIME
-	source dotfiles\vimrc
+	source $HOME\dotfiles\vimrc
 
 	nmap <leader>v :tabedit $HOME\dotfiles\vimrc<CR>
 
+### Install Vundle
+
+Set up Vundle:
+
+$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+
 ### Updating modules
 
-Inside ~/.vim or $HOME\\dotfiles:
+Inside a vim session in command mode:
+    :PluginInstall
 
-    git submodule foreach git pull

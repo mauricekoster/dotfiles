@@ -1,36 +1,39 @@
 " vim: nowrap fdm=marker fenc=utf-8
 set nocompatible
-source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
 
 " Plugins ---------------------------------------------------- {{{
-let g:airline#extensions#branch#enabled = 1
-" let g:airline#extensions#branch#empty_message = ''
+filetype off 
 
-execute pathogen#infect()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" " let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+"
+" " The following are examples of different formats supported.
+" " Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'tpope/vim-fugitive'
+" " plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+
+" " All of your Plugins must be added before the following line
+call vundle#end()   
+
 syntax on
+
 filetype plugin indent on
 " }}}
 
-" MyDiff ----------------------------------------------------- {{{
-set diffexpr=MyDiff()
-function! MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  if &sh =~ '\<cmd'
-    silent execute '!""C:\Program Files\Vim\vim74\diff" ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . '"'
-  else
-    silent execute '!C:\Program" Files\Vim\vim74\diff" ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
-  endif
-endfunction
+" Powerline -------------------------------------------------- {{{
+if has("python3")
+	python3 from powerline.vim import setup as powerline_setup
+	python3 powerline_setup()
+	python3 del powerline_setup
+	set laststatus=2
+	set t_Co=256
+endif
 " }}}
 
 " Settings --------------------------------------------------- {{{
@@ -47,14 +50,14 @@ set nobackup
 set tabstop=4
 set expandtab
 set shiftwidth=4
-ab #! #! /usr/bin/perl
-ab #c ######################################################################
 set autoindent
 set autowrite
 colors desert
 
 let mapleader = ","
 nmap <leader>v :tabedit $MYVIMRC<CR>
+
+nmap <leader>n :tabnext<cr>
 
 if has("autocmd")
     autocmd bufwritepost .vimrc source $MYVIMRC
