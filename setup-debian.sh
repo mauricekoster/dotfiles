@@ -65,9 +65,7 @@ nala install -y \
 	dex \
 	dunst \
 	pipx \
-	flatpak \
-	fzf \
-	virt-manager
+	fzf
 
 # Login manager
 nala install -y lightdm
