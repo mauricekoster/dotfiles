@@ -80,6 +80,6 @@ systemctl set-default graphical.target
 
 # -----------------------------------------------------------------------
 echo "Done."
-echo "Run ./install-user.sh as normal user"
+echo "Run ./setup-user-qtile.sh as normal user"
 
 # EOF
