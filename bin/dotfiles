@@ -84,7 +84,8 @@ set -e
 # Paths
 CONFIG_DIR="$HOME/.config/dotfiles"
 VAULT_SECRET="$HOME/.ansible-vault/vault.secret"
-DOTFILES_DIR="$HOME/.dotfiles"
+DOTFILES_REPO=https://github.com/mauricekoster/dotfiles.git
+DOTFILES_DIR="$HOME/dotfiles"
 SSH_DIR="$HOME/.ssh"
 IS_FIRST_RUN="$HOME/.dotfiles_run"
 
@@ -154,3 +155,37 @@ if ! [[ -f "$SSH_DIR/authorized_keys" ]]; then
 	fi
 	_cmd "cat $SSH_DIR/id_rsa.pub >> $SSH_DIR/authorized_keys"
 fi
+
+
+if ! [[ -d "$DOTFILES_DIR" ]]; then
+  _task "Cloning repository"
+  _cmd "git clone --quiet $DOTFILES_REPO $DOTFILES_DIR"
+else
+  _task "Updating repository"
+  _cmd "git -C $DOTFILES_DIR pull --quiet"
+fi
+
+
+pushd "$DOTFILES_DIR" 2>&1 > /dev/null
+update_ansible_galaxy $ID
+
+_task "Running playbook"; _task_done
+if [[ -f $VAULT_SECRET ]]; then
+  ansible-playbook --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
+else
+  ansible-playbook "$DOTFILES_DIR/main.yml" "$@"
+fi
+
+popd 2>&1 > /dev/null
+
+if ! [[ -f "$IS_FIRST_RUN" ]]; then
+  echo -e "${CHECK_MARK} ${GREEN}First run complete!${NC}"
+  echo -e "${ARROW} ${CYAN}Please reboot your computer to complete the setup.${NC}"
+  touch "$IS_FIRST_RUN"
+fi
+
+
+
+## The end
+_task "The end"
+_task_done
