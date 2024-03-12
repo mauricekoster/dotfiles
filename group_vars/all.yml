@@ -4,3 +4,5 @@ default_roles:
   - kitty
   - nitrogen
   - bash
+  - qtile
+  - sxhkd

@@ -1,0 +1,6 @@
+---
+- name: Copy sxhkd config
+  copy:
+    dest: "{{ ansible_user_dir }}/.config/sxhkd"
+    src: "sxhkdrc"
+    mode: 0644
