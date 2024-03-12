@@ -6,6 +6,12 @@
     state: latest
   become: yes
 
+- name: Create nitrogen config folder if it does not exist
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/nitrogen"
+    state: directory
+    mode: '0755'
+
 - name: Nitrogen - nitrogen.cfg
   ansible.builtin.template:
     dest: "{{ ansible_user_dir }}/.config/nitrogen/nitrogen.cfg"
