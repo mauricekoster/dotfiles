@@ -52,14 +52,13 @@ nala install -y \
 	neofetch kitty stow unzip wget curl \
 	fd-find \
 	feh \
-	nitrogen \
 	picom \
 	psmisc \
 	thunar \
+	ripgrep \
 	lxappearance \
 	lxpolkit \
 	papirus-icon-theme \
-	rofi \
 	sxhkd \
 	ranger \
 	dex \
@@ -69,7 +68,6 @@ nala install -y \
 
 # Login manager
 nala install -y lightdm
-
 
 # Add flatpak repo
 # flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

@@ -1,11 +1,9 @@
 ---
 - name: "Qtile | Copy config folder"
-  ansible.builtin.copy:
-    dest: "{{ ansible_user_dir }}/.config/"
-    src: "qtile"
-    mode: "0644"
-    directory_mode: "0755"
-    force: true
+  ansible.builtin.file:
+    dest: "{{ ansible_user_dir }}/.config/qtile"
+    src: "{{ role_path }}/files/qtile"
+    state: link
 
 - name: Give execute permissions autostart
   ansible.builtin.file:

@@ -1,8 +1,9 @@
 default_roles:
+  - bash
   - system
   - nala
   - kitty
   - nitrogen
-  - bash
   - qtile
   - sxhkd
+  - rofi

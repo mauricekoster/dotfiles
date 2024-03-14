@@ -1,6 +1,6 @@
 ---
-- name: Copy sxhkd config
-  copy:
+- name: "[sxhkd] - Ensure link to sxhkd config"
+  file:
     dest: "{{ ansible_user_dir }}/.config/sxhkd"
-    src: "sxhkdrc"
-    mode: 0644
+    src: "{{ role_path }}/files"
+    state: link
