@@ -8,15 +8,6 @@
   ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"
   when: system_distribution_config.stat.exists
 
-- name: Ensuring config directory
-  file:
-    path: "{{ ansible_env.HOME }}/.config"
-    state: directory
-
-- name: Ensuring .local/bin directory
-  file:
-    path: "{{ ansible_env.HOME }}/.local/bin"
-    state: directory
 
 # - name: "System | Set hosts"
 #   ansible.builtin.template:

@@ -1,0 +1,10 @@
+---
+- name: Ensuring config directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config"
+    state: directory
+
+- name: Ensuring .local/bin directory
+  file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory

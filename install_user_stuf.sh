@@ -44,16 +44,6 @@ if [ ! -d "~/.pyenv" ]; then
 	popd
 fi
 
-# -- Starship
-if ! has starship; then
-	info Installeer Starship
-	pushd ~/Downloads
-	download install_starship.sh https://starship.rs/install.sh
-	sh install_starship.sh --yes --bin-dir ~/.local/bin 1>/dev/null &
-	2>1
-	popd
-fi
-
 
 # --- VSCode ------------------------------------------------------------------
 ## URL: https://code.visualstudio.com/docs/?dv=linux64_deb

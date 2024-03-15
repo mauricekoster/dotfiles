@@ -1,0 +1,34 @@
+---
+- name: Update software cache for apt-get
+  become: True
+  ansible.builtin.apt:
+    update_cache: yes
+  changed_when: False
+
+- name: Install required software
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ vscode_debian_required_software | flatten }}"
+
+- name: Download ASC file
+  ansible.builtin.apt_key:
+    url: "{{ vscode_microsoft_asc_url }}"
+    state: present
+
+- name: Copy repo list
+  ansible.builtin.copy:
+    src: vscode.list
+    dest: /etc/apt/sources.list.d/vscode.list
+    mode: '0644'
+
+- name: Update software cache for apt-get again
+  become: True
+  ansible.builtin.apt:
+    update_cache: yes
+  changed_when: False
+
+- name: Install Visual Studio Code
+  ansible.builtin.apt:
+    name: code
+    state: present
