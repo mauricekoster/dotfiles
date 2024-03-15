@@ -1,9 +1,23 @@
 default_roles:
-  - qtile
-  - system
-  - bash
-  - nala
-  - kitty
-  - nitrogen
-  - sxhkd
-  - rofi
+  #- qtile
+  #- system
+  - fonts
+  # - bash
+  # - nala
+  # - kitty
+  # - nitrogen
+  # - sxhkd
+  # - rofi
+
+packages:
+  fonts:
+    - fonts-glyphicons-halflings
+    - fonts-noto-color-emoji
+
+nerdfonts:
+  - name: "Hack"
+    pattern: "Hack*Nerd*Font*Complete*"
+    url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip"
+  - name: "JetBrainsMono"
+    pattern: "JetBrainsMono*NerdFont*"
+    url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip"
