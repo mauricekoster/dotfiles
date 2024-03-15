@@ -10,7 +10,7 @@
       file:
         path: "{{ ansible_user_dir }}/.bashrc"
         state: absent
-      when: test.stat is defined and test.stat.islnk is not defined
+      when: test.stat.islnk is defined and test.stat.islnk == False
 
     - file:
         src: "{{ role_path }}/files/.bashrc"
@@ -19,10 +19,23 @@
 
 
 - name: "Bash | Ensure link .profile"
-  ansible.builtin.file:
-    src: "{{ role_path }}/files/.profile"
-    dest: "{{ ansible_user_dir }}/.profile"
-    state: link
+  block:
+    - name: "Check .profile status"
+      stat:
+        path: "{{ ansible_user_dir }}/.profile"
+      register: test
+
+    - name: "Remove .profile if needed"
+      file:
+        path: "{{ ansible_user_dir }}/.profile"
+        state: absent
+      when: test.stat.islnk is defined and test.stat.islnk == False
+
+    - name: Ensure .profile link
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/.profile"
+        dest: "{{ ansible_user_dir }}/.profile"
+        state: link
 
 - name: "Bash | Ensure link bash in config"
   ansible.builtin.file:
