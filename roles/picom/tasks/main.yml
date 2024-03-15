@@ -1,0 +1,26 @@
+---
+- name: "[picom] - Ensure installed"
+  ansible.builtin.package:
+    name:
+      - picom
+    state: latest
+  become: yes
+
+- name: "[picom] - Ensure config folder"
+  block:
+    - name: "Check existing config folder"
+      stat:
+        path: "{{ ansible_user_dir }}/.config/picom"
+      register: test
+
+    - name: "Remove picom if needed"
+      file:
+        path: "{{ ansible_user_dir }}/.config/picom"
+        state: absent
+      when: test.stat.islnk is defined and test.stat.islnk == False
+
+    - name: "Ensure symbolic link to picom config"
+      ansible.builtin.file:
+        dest: "{{ ansible_user_dir }}/.config/picom"
+        src: "{{ role_path }}/files"
+        state: link
