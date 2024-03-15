@@ -4,7 +4,7 @@
     - name: "Check .bashrc status"
       stat:
         path: "{{ ansible_user_dir }}/.bashrc"
-        register: test
+      register: test
 
     - name: "Remove .bashrc if needed"
       file:
