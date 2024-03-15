@@ -1,9 +1,22 @@
 ---
 - name: "Qtile | Copy config folder"
-  ansible.builtin.file:
-    dest: "{{ ansible_user_dir }}/.config/qtile"
-    src: "{{ role_path }}/files/qtile"
-    state: link
+  block:
+    - name: "Check existing config folder"
+      stat:
+        path: "{{ ansible_user_dir }}/.config/qtile"
+        register: test
+
+    - name: "Remove qtile if needed"
+      file:
+        path: "{{ ansible_user_dir }}/.config/qtile"
+        state: absent
+        when: test.stat is defined and test.stat.islnk is not defined
+        
+    - name: "Ensure symbolic link to qtile config"
+      ansible.builtin.file:
+        dest: "{{ ansible_user_dir }}/.config/qtile"
+        src: "{{ role_path }}/files/qtile"
+        state: link
 
 - name: Give execute permissions autostart
   ansible.builtin.file:
