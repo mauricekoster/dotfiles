@@ -10,7 +10,7 @@
       file:
         path: "{{ ansible_user_dir }}/.config/qtile"
         state: absent
-        when: test.stat is defined and test.stat.islnk is not defined
+      when: test.stat is defined and test.stat.islnk is not defined
 
     - name: "Ensure symbolic link to qtile config"
       ansible.builtin.file:

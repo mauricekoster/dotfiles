@@ -10,7 +10,7 @@
       file:
         path: "{{ ansible_user_dir }}/.bashrc"
         state: absent
-        when: test.stat is defined and test.stat.islnk is not defined
+      when: test.stat is defined and test.stat.islnk is not defined
 
     - file:
         src: "{{ role_path }}/files/.bashrc"
