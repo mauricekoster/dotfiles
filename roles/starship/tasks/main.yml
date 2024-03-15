@@ -1,0 +1,39 @@
+---
+- name: "[starship] - Ensure starship is installed"
+  block:
+  - name: Check starship command
+    stat:
+      path: "{{ ansible_user_dir }}/.local/bin/starship"
+    register: test
+      
+  - name: Get starship install script
+    get_url:
+      url: https://starship.rs/install.sh
+      dest: /tmp/starship_install.sh
+      mode: '0755'
+    when: test.stat is defined
+      
+  - name: Install starship
+    shell:
+      cmd: "/tmp/starship_install.sh --yes  --bin-dir {{ ansible_user_dir }}/.local/bin"
+      executable: /bin/sh
+
+
+- name: "[starship] Ensure starship config link"
+  block:
+    - name: "Check existing config folder"
+      stat:
+        path: "{{ ansible_user_dir }}/.config/starship"
+      register: test
+
+    - name: "Remove starship if needed"
+      file:
+        path: "{{ ansible_user_dir }}/.config/starship.toml"
+        state: absent
+      when: test.stat.islnk is defined and test.stat.islnk == False
+
+    - name: "Ensure symbolic link to starship config"
+      ansible.builtin.file:
+        dest: "{{ ansible_user_dir }}/.config/starship.toml"
+        src: "{{ role_path }}/files/starship.toml"
+        state: link
