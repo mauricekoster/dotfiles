@@ -1,9 +1,22 @@
 ---
 - name: "Bash | Ensure link .bashrc"
-  ansible.builtin.file:
-    src: "{{ role_path }}/files/.bashrc"
-    path: "{{ ansible_user_dir }}/.bashrc"
-    state: link
+  block:
+    - name: "Check .bashrc status"
+      stat:
+        path: "{{ ansible_user_dir }}/.bashrc"
+        register: test
+
+    - name: "Remove .bashrc if needed"
+      file:
+        path: "{{ ansible_user_dir }}/.bashrc"
+        state: absent
+        when: test.stat is defined and test.stat.islnk is not defined
+
+    - file:
+        src: "{{ role_path }}/files/.bashrc"
+        path: "{{ ansible_user_dir }}/.bashrc"
+        state: link
+
 
 - name: "Bash | Ensure link .profile"
   ansible.builtin.file:
