@@ -22,9 +22,20 @@
     mode: "0750"
   when: vscode_use_config is defined and vscode_use_config
 
-- name: Install config file
-  ansible.builtin.template:
-    src: settings.json.j2
-    dest: "{{ ansible_user_dir }}/.config/Code/User/settings.json.j2"
-    mode: "0755"
-  when: vscode_use_config is defined and vscode_use_config
+- name: "[vscode] - Ensure link settings.json"
+  block:
+    - name: "Check .bashrc status"
+      stat:
+        path: "{{ ansible_user_dir }}/.config/Code/User/settings.json"
+      register: test
+
+    - name: "Remove .bashrc if needed"
+      file:
+        path: "{{ ansible_user_dir }}/.config/Code/User/settings.json"
+        state: absent
+      when: test.stat.islnk is defined and test.stat.islnk == False
+
+    - file:
+        src: "{{ role_path }}/files/config/settings.json"
+        path: "{{ ansible_user_dir }}/.config/Code/User/settings.json"
+        state: link

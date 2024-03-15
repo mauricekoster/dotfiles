@@ -45,24 +45,3 @@ if [ ! -d "~/.pyenv" ]; then
 fi
 
 
-# --- VSCode ------------------------------------------------------------------
-## URL: https://code.visualstudio.com/docs/?dv=linux64_deb
-if ! has code; then
-	info Installeer VSCode
-	url="https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
-	pushd ${DOWNLOAD_DIR}
-	download code.deb ${url}
-	sudo apt install ./code.deb
-	rm code.deb
-	popd
-	code --install-extension arcticicestudio.nord-visual-studio-code
-	code --install-extension donjayamanne.python-environment-manager
-	code --install-extension ms-python.python
-	code --install-extension ms-python.vscode-pylance
-
-	# Remove user settings file; will be stow-ed
-	mkdir -p ~/.config/Code/User
-	if [ -f "~/.config/Code/User/settings.json" ]; then
-		rm ~/.config/Code/User/settings.json
-	fi
-fi

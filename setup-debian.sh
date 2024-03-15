@@ -49,7 +49,7 @@ nala install -y libssl-dev zlib1g-dev \
 
 # Utilities
 nala install -y \
-	neofetch kitty stow unzip wget curl \
+	neofetch stow unzip wget curl \
 	fd-find \
 	feh \
 	picom \
@@ -59,7 +59,6 @@ nala install -y \
 	lxappearance \
 	lxpolkit \
 	papirus-icon-theme \
-	sxhkd \
 	ranger \
 	dex \
 	dunst \
