@@ -21,11 +21,11 @@ packages:
 # Visual Studio Code
 vscode_use_extensions: True
 vscode_extensions:
-  - 'arcticicestudio.nord-visual-studio-code'
-  - 'donjayamanne.python-environment-manager'
-  - 'ms-python.debugpy'
-  - 'ms-python.python'
-  - 'ms-python.vscode-pylance'
+  - arcticicestudio.nord-visual-studio-code
+  - donjayamanne.python-environment-manager
+  - ms-python.debugpy
+  - ms-python.python
+  - ms-python.vscode-pylance
 
 vscode_use_config: True
 
