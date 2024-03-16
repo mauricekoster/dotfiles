@@ -29,11 +29,20 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+from qtile_extras import widget
+from qtile_extras.widget.decorations import BorderDecoration
+
+
 import os
 import subprocess
 
+import colors
+
 mod = "mod4"
 terminal = guess_terminal()
+
+font_name = "JetBrainsMono Nerd Font"
+
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -83,7 +92,22 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]
 
-groups = [Group(i) for i in "123456789"]
+groups = []
+group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
+group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
+#group_labels = ["DEV", "WWW", "SYS", "DOC", "VBOX", "CHAT", "MUS", "VID", "GFX",]
+#group_labels = ["", "", "", "", "", "", "", "", "",]
+
+group_layouts = ["monadtall", "monadtall", "tile", "tile", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
+
+for i in range(len(group_names)):
+    groups.append(
+        Group(
+            name=group_names[i],
+            layout=group_layouts[i].lower(),
+            label=group_labels[i],
+        ))
+
 
 for i in groups:
     keys.extend(
@@ -109,61 +133,176 @@ for i in groups:
         ]
     )
 
+colors = colors.Nord
+
+layout_theme = {"border_width": 2,
+                "margin": 8,
+                "border_focus": colors[8],
+                "border_normal": colors[0]
+                }
+
+
+
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Max(),
+    layout.Columns(**layout_theme),
+    layout.Max(
+        border_width = 0,
+         margin = 0,
+    ),
     # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
+    # layout.Stack(**layout_theme, num_stacks=2),
+    # layout.Bsp(**layout_theme),
+    # layout.Matrix(**layout_theme),
+    # layout.MonadTall(**layout_theme),
+    # layout.MonadWide(**layout_theme),
+    # layout.RatioTile(**layout_theme),
+    # layout.Tile(**layout_theme),
+    # layout.TreeTab(
+    #     font = "JetBrainsMono Nerd Font",
+    #     fontsize = 12,
+    #     border_width = 0,
+    #     bg_color = colors[0],
+    #     active_bg = colors[8],
+    #     active_fg = colors[2],
+    #     inactive_bg = colors[1],
+    #     inactive_fg = colors[0],
+    #     padding_left = 8,
+    #     padding_x = 8,
+    #     padding_y = 6,
+    #     sections = ["ONE", "TWO", "THREE"],
+    #     section_fontsize = 10,
+    #     section_fg = colors[7],
+    #     section_top = 15,
+    #     section_bottom = 15,
+    #     level_shift = 8,
+    #     vspace = 3,
+    #     panel_width = 240
+    # ),
+    # layout.VerticalTile(**layout_theme),
+    # layout.Zoomy(**layout_theme),
 ]
 
 widget_defaults = dict(
-    font="sans",
-    fontsize=12,
-    padding=3,
+    font=font_name,
+    fontsize=14,
+    padding=4,
+    background=colors[0]
 )
 extension_defaults = widget_defaults.copy()
 
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                # widget.TextBox("default config", name="default"),
-                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %H:%M"),
-                widget.QuickExit(),
-            ],
-            24,
-            # border_width=[1, 1, 1, 1],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+
+def init_widgets_list():
+    return [
+        
+        widget.Prompt(
+            font = font_name,
+            fontsize=14,
+            foreground = colors[1]
         ),
-        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-        # By default we handle these events delayed to already improve performance, however your system might still be struggling
-        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        # x11_drag_polling_rate = 60,
-    ),
-]
+
+        widget.CurrentLayout(
+            foreground = colors[4],
+            padding = 5
+        ),
+        widget.TextBox(
+            text = '|',
+            font = font_name,
+            foreground = colors[1],
+            padding = 2,
+            fontsize = 14
+            ),
+        widget.GroupBox(
+            fontsize = 12,
+            margin_y = 5,
+            margin_x = 5,
+            padding_y = 0,
+            padding_x = 1,
+            borderwidth = 3,
+            active = colors[8],
+            inactive = colors[1],
+            rounded = False,
+            highlight_color = colors[2],
+            highlight_method = "line",
+            this_current_screen_border = colors[7],
+            this_screen_border = colors [4],
+            other_current_screen_border = colors[7],
+            other_screen_border = colors[4],
+        ),
+        widget.TextBox(
+            text = '|',
+            font = font_name,
+            foreground = colors[1],
+            padding = 2,
+            fontsize = 14
+            ),
+        widget.WindowName(
+            foreground = colors[6],
+            max_chars = 40
+        ),
+        widget.Chord(
+            chords_colors={
+                "launch": ("#ff0000", "#ffffff"),
+            },
+            name_transform=lambda name: name.upper(),
+        ),
+        # widget.TextBox("default config", name="default"),
+        # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+        # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+        # widget.StatusNotifier(),
+        widget.Spacer(length = 8),
+        widget.Systray(
+            padding = 3
+        ),
+        widget.Spacer(length = 8),
+        widget.Clock(   
+            foreground = colors[8],
+            format = "⏱  %A, %d %B - %H:%M",
+            decorations=[
+                BorderDecoration(
+                    colour = colors[8],
+                    border_width = [0, 0, 2, 0],
+                )
+            ],
+        ),
+        widget.Spacer(length = 8),
+    ]
+
+
+def init_screens():
+    return [Screen(top=bar.Bar(widgets=init_widgets_list(), size=26))]
+
+screens = init_screens()
+
+
+
+def window_to_prev_group(qtile):
+    if qtile.currentWindow is not None:
+        i = qtile.groups.index(qtile.currentGroup)
+        qtile.currentWindow.togroup(qtile.groups[i - 1].name)
+
+def window_to_next_group(qtile):
+    if qtile.currentWindow is not None:
+        i = qtile.groups.index(qtile.currentGroup)
+        qtile.currentWindow.togroup(qtile.groups[i + 1].name)
+
+def window_to_previous_screen(qtile):
+    i = qtile.screens.index(qtile.current_screen)
+    if i != 0:
+        group = qtile.screens[i - 1].group.name
+        qtile.current_window.togroup(group)
+
+def window_to_next_screen(qtile):
+    i = qtile.screens.index(qtile.current_screen)
+    if i + 1 != len(qtile.screens):
+        group = qtile.screens[i + 1].group.name
+        qtile.current_window.togroup(group)
+
+def switch_screens(qtile):
+    i = qtile.screens.index(qtile.current_screen)
+    group = qtile.screens[i - 1].group
+    qtile.current_screen.set_group(group)
+
+
 
 # Drag floating layouts.
 mouse = [

@@ -14,6 +14,7 @@ has() {
 if ! has qtile; then
 	echo === Installeer qtile
 	pipx install qtile
+	pipx inject qtile qtile-extras
 	echo "exec /home/$(whoami)/.local/bin/qtile start" >~/.xsession
 fi
 

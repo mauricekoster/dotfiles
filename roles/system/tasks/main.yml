@@ -8,6 +8,23 @@
   ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"
   when: system_distribution_config.stat.exists
 
+- name: "[system] - Ensure link .dir_colors"
+  block:
+    - name: "Check .dir_colors status"
+      stat:
+        path: "{{ ansible_user_dir }}/.dir_colors"
+      register: test
+
+    - name: "Remove .bashrc if needed"
+      file:
+        path: "{{ ansible_user_dir }}/.dir_colors"
+        state: absent
+      when: test.stat.islnk is defined and test.stat.islnk == False
+
+    - file:
+        src: "{{ role_path }}/files/.dir_colors"
+        path: "{{ ansible_user_dir }}/.dir_colors"
+        state: link
 
 # - name: "System | Set hosts"
 #   ansible.builtin.template:
