@@ -2,18 +2,35 @@ default_roles:
   - system
   - xdg
   - fonts
+  - theme
+  - gtk
+  - kitty
   - bash
+  - starship
   - nala
   - qtile
-  - kitty
+  - picom
   - nitrogen
   - sxhkd
   - rofi
-  - starship
   - vscode
-  - picom
+  - thorium  
 
 packages:
+  debian:
+    - neofetch
+    - ripgrep
+    - fd-find
+    - fzf
+    - pipx
+    - ranger
+    - unzip
+    - wget
+    - curl
+    - feh
+    - psmisc
+    
+
   fonts:
     - fonts-glyphicons-halflings
     - fonts-noto-color-emoji

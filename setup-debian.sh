@@ -18,8 +18,6 @@ apt install nala -y
 
 # Making .config and Moving config files and background to Pictures
 cd $builddir
-mkdir -p /home/$username/.config
-mkdir -p /home/$username/.fonts
 
 # Installing Essential Programs
 nala install -y build-essential libx11-dev libxft-dev libxinerama-dev
@@ -36,7 +34,8 @@ nala install -y \
 # Installing Python and Qtile dependancies
 nala install -y \
 	python3 python3-pip python3-venv python3-v-sim python-dbus-dev \
-	libpangocairo-1.0-0 python3-xcffib python3-cairocffi
+	libpangocairo-1.0-0 python3-xcffib python3-cairocffi \
+	pipx
 
 # neovim build essentials
 nala install -y \
@@ -49,21 +48,12 @@ nala install -y libssl-dev zlib1g-dev \
 
 # Utilities
 nala install -y \
-	neofetch stow unzip wget curl \
-	fd-find \
-	feh \
-	picom \
-	psmisc \
+	unzip wget curl \
 	thunar \
-	ripgrep \
 	lxappearance \
 	lxpolkit \
-	papirus-icon-theme \
-	ranger \
 	dex \
 	dunst \
-	pipx \
-	fzf
 
 # Login manager
 nala install -y lightdm

@@ -1,13 +1,4 @@
 
-# --- MONS ------------------------------------------------------------------
-if [ ! -d "~/mons" ]; then
-	info Installeer monitor tool: mons
-	pushd ${HOME}
-	git clone --recursive https://github.com/Ventto/mons.git
-	cd mons
-	sudo make install
-	popd
-fi
 
 # --- Steam -------------------------------------------------------------------
 flatpak install -y flathub com.valvesoftware.Steam

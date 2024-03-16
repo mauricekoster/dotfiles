@@ -1,0 +1,44 @@
+---
+- name: "[theme] - Nordic repo checkout"
+  ansible.builtin.git:
+    repo: 'https://github.com/EliverLara/Nordic.git'
+    dest: /usr/share/themes/Nordic
+  become: True
+
+- name: "[theme] - Nordzy Icons"
+  block:
+    - name: "[theme] - Check icons"
+      shell: "ls {{ lookup('env', 'HOME') }}/.local/share/icons/Nordzy*"
+      register: icons_exists
+      ignore_errors: yes
+      changed_when: false
+
+    - name: "[theme] - Get Nordzy Icons"
+      when: icons_exists is failed
+      ansible.builtin.git:
+        repo: 'https://github.com/alvatip/Nordzy-icon'
+        dest: "{{ ansible_user_dir }}/Nordzy-icon"
+    
+    - name: "[theme] - Install Nordzy Icons"
+      when: icons_exists is failed
+      shell: "cd {{ansible_user_dir}}/Nordzy-icon && ./install.sh && rm -rf {{ansible_user_dir}}/Nordzy-icon"
+    
+- name: "[theme] - Nordzy Cursors"
+  block:
+    - name: "[theme] - Check cursors"
+      shell: "ls {{ lookup('env', 'HOME') }}/.icons/Nordzy*"
+      register: cursors_exists
+      ignore_errors: yes
+      changed_when: false
+
+    - name: "[theme] - Get Nordzy cursors"
+      when: cursors_exists is failed
+      ansible.builtin.git:
+        repo: 'https://github.com/alvatip/Nordzy-cursors'
+        dest: "{{ ansible_user_dir }}/Nordzy-cursors"
+    
+    - name: "[theme] - Install Nordzy cursors"
+      when: cursors_exists is failed
+      shell: "cd {{ansible_user_dir}}/Nordzy-cursors && ./install.sh && rm -rf {{ansible_user_dir}}/Nordzy-cursors"
+    
+   

@@ -1,0 +1,10 @@
+---
+# - name: "[vscode] - Import RHEL family specifics"
+#   ansible.builtin.import_tasks: redhat.yml
+#   become: yes
+#   when: ansible_os_family == 'RedHat'
+
+- name: "[thorium] - Import Debian family specifics"
+  ansible.builtin.import_tasks: debian.yml
+  become: yes
+  when: ansible_os_family == 'Debian'
