@@ -1,0 +1,7 @@
+---
+- name: "[system] - Debian - Install packages"
+  package:
+    name: "{{item}}"
+    state: latest
+  become: yes
+  loop: "{{ packages.debian }}"

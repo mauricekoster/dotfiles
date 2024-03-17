@@ -15,18 +15,6 @@ if [ ! -f "/usr/local/bin/lazygit" ]; then
 	popd
 fi
 
-# -- neovim
-if [ ! -d "~/neovim" ]; then
-	info Installeer Neovim
-	pushd ${HOME}
-	git clone https://github.com/neovim/neovim.git
-	cd ~/neovim
-	make CMAKE_BUILD_TYPE=Release
-	# sudo make install
-	cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
-	popd
-fi
-
 # -- pyenv
 if [ ! -d "~/.pyenv" ]; then
 	info Pyenv installeren

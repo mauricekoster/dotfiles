@@ -1,0 +1,13 @@
+---
+- name: "[neovim] - Debian - Build prerequisites"
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - ninja-build 
+    - gettext
+    - cmake 
+    - unzip 
+    - curl 
+    - build-essential
+  become: True
