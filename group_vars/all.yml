@@ -32,6 +32,10 @@ packages:
     - psmisc
     - flatpak
     - virt-manager
+    - jq
+    - sqlite3
+    - xsel
+    - net-tools
 
 
   fonts:

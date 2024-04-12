@@ -1,0 +1,19 @@
+---
+- name: "[tmux] Ensure tmux config link"
+  block:
+    - name: "Check existing config folder"
+      stat:
+        path: "{{ ansible_user_dir }}/.config/tmux"
+      register: test
+
+    - name: "Remove tmux if needed"
+      file:
+        path: "{{ ansible_user_dir }}/.config/tmux"
+        state: absent
+      when: test.stat.islnk is defined and test.stat.islnk == False
+
+    - name: "Ensure symbolic link to tmux config"
+      ansible.builtin.file:
+        dest: "{{ ansible_user_dir }}/.config/tmux"
+        src: "{{ role_path }}/files"
+        state: link

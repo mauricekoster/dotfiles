@@ -106,3 +106,4 @@ export JAVA_HOME=$HOME/.jbang/currentjdk
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
+export PATH=/home/maurice/.bun/bin:/home/maurice/.jbang/bin:/home/maurice/.jbang/currentjdk/bin:/home/maurice/.pyenv/plugins/pyenv-virtualenv/shims:/home/maurice/.pyenv/shims:/home/maurice/.pyenv/bin:/home/maurice/.nvm/versions/node/v20.11.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/maurice/.config/bash:/home/maurice/bin:/home/maurice/.local/bin:/home/maurice/dotfiles/bin:/home/maurice/.local/lab/bin
