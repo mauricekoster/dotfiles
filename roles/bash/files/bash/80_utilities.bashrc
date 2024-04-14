@@ -96,3 +96,11 @@ function ask()
         *) return 1 ;;
     esac
 }
+
+function fullname()
+{
+    user_record="$(getent passwd $1)"
+    user_gecos_field="$(echo "$user_record" | cut -d ':' -f 5)"
+    user_full_name="$(echo "$user_gecos_field" | cut -d ',' -f 1)"
+    echo "$user_full_name"
+}

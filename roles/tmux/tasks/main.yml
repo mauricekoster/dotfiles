@@ -15,5 +15,5 @@
     - name: "Ensure symbolic link to tmux config"
       ansible.builtin.file:
         dest: "{{ ansible_user_dir }}/.config/tmux"
-        src: "{{ role_path }}/files"
+        src: "{{ role_path }}/files/config"
         state: link

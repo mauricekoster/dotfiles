@@ -36,6 +36,7 @@ packages:
     - sqlite3
     - xsel
     - net-tools
+    - bat
 
 
   fonts:
