@@ -1,5 +1,6 @@
 collections:
   - name: community.general
+  - name: dandyrow.linux
 
 roles:
   - name: staticdev.pyenv

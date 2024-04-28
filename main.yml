@@ -35,3 +35,12 @@
       with_items: "{{ run_roles }}"
       tags:
         - always
+
+    - name: Stow config packages
+      dandyrow.linux.stow:
+        src: ~/dotfiles
+        package:
+            - "{{ item }}"
+        force: Yes
+      loop: "{{ config.stow }}"
+      

@@ -4,21 +4,21 @@ default_roles:
   - fonts
   - theme
   - gtk
-  - kitty
   - bash
   - starship
   - nala
   - qtile
-  - picom
   - nitrogen
   - sxhkd
-  - rofi
   - vscode
   - thorium  
   - neovim
 
 packages:
   debian:
+    - kitty
+    - rofi
+    - picom
     - neofetch
     - ripgrep
     - fd-find
@@ -44,6 +44,11 @@ packages:
     - fonts-noto-color-emoji
     - fonts-font-awesome
 
+config:
+  stow:
+    - kitty
+    - rofi
+    - picom
 
 # Visual Studio Code
 vscode_use_extensions: True
