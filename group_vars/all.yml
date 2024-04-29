@@ -12,9 +12,18 @@ default_roles:
   - sxhkd
   - vscode
   - thorium  
-  - neovim
 
 packages:
+  brew:
+    - stow
+    - btop
+    - tmux
+    - tmuxinator
+    - eza
+    - fzf
+    - zoxide
+    - neovim
+
   debian:
     - kitty
     - rofi
@@ -22,7 +31,6 @@ packages:
     - neofetch
     - ripgrep
     - fd-find
-    - fzf
     - pipx
     - ranger
     - unzip
@@ -49,6 +57,8 @@ config:
     - kitty
     - rofi
     - picom
+    - neovim
+    - tmux
 
 # Visual Studio Code
 vscode_use_extensions: True

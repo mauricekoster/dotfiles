@@ -4,6 +4,16 @@
   become: yes
   when: ansible_os_family == 'Debian'
 
+- name: "[system] - Update Homebrew"
+  community.general.homebrew:
+    update_homebrew: true
+
+- name: "[system] - Install/Update brew packages"
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ packages.brew }}"
+
 - name: "[system] - Ensure link .dir_colors"
   block:
     - name: "Check .dir_colors status"
