@@ -37,10 +37,6 @@ nala install -y \
 	libpangocairo-1.0-0 python3-xcffib python3-cairocffi \
 	pipx
 
-# neovim build essentials
-nala install -y \
-	ninja-build gettext cmake
-
 # Pyenv
 nala install -y libssl-dev zlib1g-dev \
 	libbz2-dev libreadline-dev libsqlite3-dev \
@@ -53,7 +49,7 @@ nala install -y \
 	lxappearance \
 	lxpolkit \
 	dex \
-	dunst \
+	dunst
 
 # Login manager
 nala install -y lightdm

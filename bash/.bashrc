@@ -65,3 +65,7 @@ fi
 # sh-shell:bash
 # End:
 # TODO: Everything below, should be checked and moved to own .bashrc file
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

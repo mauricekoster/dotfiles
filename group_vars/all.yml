@@ -21,18 +21,21 @@ packages:
     - tmuxinator
     - eza
     - fzf
+    - ripgrep
+    - fd
+    - bat
     - zoxide
     - neovim
+    - starship
+    - sqlite
+    - ranger
 
   debian:
     - kitty
     - rofi
     - picom
     - neofetch
-    - ripgrep
-    - fd-find
     - pipx
-    - ranger
     - unzip
     - wget
     - curl
@@ -41,10 +44,9 @@ packages:
     - flatpak
     - virt-manager
     - jq
-    - sqlite3
     - xsel
     - net-tools
-    - bat
+    - sxhkd
 
 
   fonts:
@@ -54,7 +56,9 @@ packages:
 
 config:
   stow:
+    - bash
     - kitty
+    - starship
     - rofi
     - picom
     - neovim
