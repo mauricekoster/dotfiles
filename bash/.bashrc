@@ -15,7 +15,7 @@ fi
 
 # extend the path to contain possible location of
 # bash libraries
-export BASH_LIB_PATH=${BASH_LIB_PATH:-$HOME/.config/bash}
+export BASH_LIB_PATH=${BASH_LIB_PATH:-$HOME/.bash}
 export PATH=$PATH:$BASH_LIB_PATH
 
 export HOSTFILE=$HOME/.hosts # Put a list of remote hosts in ~/.hosts
