@@ -11,7 +11,7 @@ default_roles:
   - nitrogen
   - sxhkd
   - vscode
-  - thorium  
+  - thorium
 
 packages:
   brew:
@@ -29,6 +29,7 @@ packages:
     - starship
     - sqlite
     - ranger
+    - lazygit
 
   debian:
     - kitty
