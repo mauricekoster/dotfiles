@@ -4,21 +4,20 @@
   ansible.builtin.package:
     name: "{{ item }}"
     state: latest
-    update_cache: no
+    update_cache: true
   loop: "{{ packages.fonts }}"
- 
 
 - name: "[fonts] - Ensure fonts directory"
-  file:
+  ansible.builtin.file:
     path: "{{ lookup('env', 'HOME') }}/.fonts"
     state: directory
 
 - name: "[fonts] - JetBrains Nerd Fonts"
   block:
     - name: "Check font"
-      shell: "ls {{ lookup('env', 'HOME') }}/.fonts/JetBrainsMono*NerdFont*"
+      ansible.builtin.shell: "ls {{ lookup('env', 'HOME') }}/.fonts/JetBrainsMono*NerdFont*"
       register: font_exists
-      ignore_errors: yes
+      ignore_errors: true
       changed_when: false
 
     - name: "Download font"
@@ -26,9 +25,9 @@
       ansible.builtin.unarchive:
         src: "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip"
         dest: "{{ lookup('env', 'HOME') }}/.fonts/"
-        remote_src: yes
+        remote_src: true
       register: font_installed
-    
+
 - name: Update the font cache
   ansible.builtin.command: fc-cache -fv
   when: font_installed.changed | bool

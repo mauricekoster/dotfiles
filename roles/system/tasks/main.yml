@@ -1,7 +1,7 @@
 ---
 - name: "System | Run Tasks: {{ ansible_distribution }}"
   ansible.builtin.import_tasks: debian.yml
-  become: yes
+  become: true
   when: ansible_os_family == 'Debian'
 
 - name: "[system] - Update Homebrew"
@@ -13,24 +13,6 @@
     name: "{{ item }}"
     state: latest
   loop: "{{ packages.brew }}"
-
-- name: "[system] - Ensure link .dir_colors"
-  block:
-    - name: "Check .dir_colors status"
-      stat:
-        path: "{{ ansible_user_dir }}/.dir_colors"
-      register: test
-
-    - name: "Remove .bashrc if needed"
-      file:
-        path: "{{ ansible_user_dir }}/.dir_colors"
-        state: absent
-      when: test.stat.islnk is defined and test.stat.islnk == False
-
-    - file:
-        src: "{{ role_path }}/files/.dir_colors"
-        path: "{{ ansible_user_dir }}/.dir_colors"
-        state: link
 
 # - name: "System | Set hosts"
 #   ansible.builtin.template:
