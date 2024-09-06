@@ -6,7 +6,7 @@
 #-----------------------------------
 
 if [ -z "$USER" ]; then
-	USER=${USERNAME:-"<user>"}
+  USER=${USERNAME:-"<user>"}
 fi
 
 # if [ -f /etc/bashrc ]; then
@@ -22,48 +22,50 @@ export HOSTFILE=$HOME/.hosts # Put a list of remote hosts in ~/.hosts
 export HOST=${HOST:-$(uname -n)}
 
 has() {
-	command -v "$1" 1>/dev/null 2>&1
+  command -v "$1" 1>/dev/null 2>&1
 }
 
 # This function will source foo or foo.bash
 function source() {
-	#	echo "Bashlib path: $PATH"
-	command source $* 2>/dev/null
-	if [ $? -eq 1 ]; then
-		S="$1.bash"
-		#        echo "    $S"
-		shift
-		command source $S $* 2>/dev/null
-	fi
+  #	echo "Bashlib path: $PATH"
+  command source $* 2>/dev/null
+  if [ $? -eq 1 ]; then
+    S="$1.bash"
+    #        echo "    $S"
+    shift
+    command source $S $* 2>/dev/null
+  fi
 }
 declare +x source
 
 ##
 # _source all *.bashrc files
 function dorc() {
-	local P=$1
-	shift
-	if [ "$*" != "" ]; then
-		dorc $*
-	fi
-	#echo "Sourcing $P"
-	for SOURCE in $P/*.bashrc; do
-		#echo "    $SOURCE"
-		source $SOURCE 2>/dev/null
-	done
+  local P=$1
+  shift
+  if [ "$*" != "" ]; then
+    dorc $*
+  fi
+  #echo "Sourcing $P"
+  for SOURCE in $P/*.bashrc; do
+    #echo "    $SOURCE"
+    source $SOURCE 2>/dev/null
+  done
 }
 dorc ${BASH_LIB_PATH//:/ }
 
 export PATH=${PATH}:${HOME}/.local/lab/bin
 
 if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+  . ~/.bash_aliases
 fi
+
+source /home/maurice/.pyenv/.pyenvrc
 
 # Local Variables:
 # mode:shell-script
 # sh-shell:bash
-# End:
+
 # TODO: Everything below, should be checked and moved to own .bashrc file
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

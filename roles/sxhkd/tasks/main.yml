@@ -1,6 +1,0 @@
----
-- name: "[sxhkd] - Ensure link to sxhkd config"
-  file:
-    dest: "{{ ansible_user_dir }}/.config/sxhkd"
-    src: "{{ role_path }}/files"
-    state: link

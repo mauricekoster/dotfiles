@@ -1,5 +1,6 @@
 default_roles:
   - system
+  - pyenv
   - xdg
   - fonts
   - theme
@@ -9,7 +10,6 @@ default_roles:
   - nala
   - qtile
   - nitrogen
-  - sxhkd
   - vscode
   - thorium
 
@@ -64,9 +64,10 @@ config:
     - picom
     - neovim
     - tmux
+    - sxhkd
 
 # Visual Studio Code
-vscode_use_extensions: True
+vscode_use_extensions: true
 vscode_extensions:
   - arcticicestudio.nord-visual-studio-code
   - donjayamanne.python-environment-manager
@@ -74,12 +75,10 @@ vscode_extensions:
   - ms-python.python
   - ms-python.vscode-pylance
 
-vscode_use_config: True
+vscode_use_config: true
 
 vscode_microsoft_asc_url: https://packages.microsoft.com/keys/microsoft.asc
 
 vscode_debian_required_software: []
 
 vscode_redhat_required_software: []
-
-  
