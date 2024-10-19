@@ -65,6 +65,7 @@ config:
     - picom
     - neovim
     - tmux
+    - tmuxinator
     - sxhkd
 
 # Visual Studio Code
