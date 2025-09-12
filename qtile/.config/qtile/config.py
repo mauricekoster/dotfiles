@@ -39,7 +39,8 @@ import subprocess
 import colors
 
 mod = "mod4"
-terminal = guess_terminal()
+# terminal = guess_terminal()
+terminal = "kitty"
 
 font_name = "JetBrainsMono Nerd Font"
 
