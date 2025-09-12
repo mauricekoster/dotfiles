@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 
+set -e
 
 ascii_art="
 ┳┳┓      •     ┳┓   ┏•┓   
@@ -27,9 +28,18 @@ fi
 echo "Updating system"
 sudo apt update && sudo apt upgrade
 
+# Install git
+sudo apt install -y git
+
 # Use custom repo if specified, otherwise default to basecamp/omarchy
 MKO_REPO="${MKO_REPO:-mauricekoster/dotfiles}"
 
 echo -e "\nCloning MKo from: https://github.com/${MKO_REPO}.git"
 rm -rf ~/.dotfiles/
 git clone "https://github.com/${MKO_REPO}.git" ~/.dotfiles >/dev/null
+
+# Start installation script
+echo
+echo "Installation starting..."
+echo
+source ~/.dotfiles/install.sh
