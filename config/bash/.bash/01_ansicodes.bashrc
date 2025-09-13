@@ -30,6 +30,7 @@ export white='\e[0;37m'
 export WHITE='\e[1;37m'
 export BACK_white='\e[47m'
 
+
 # 38, 39 unused/not defined/does not exit/is same as white
 export NC='\e[0m'              # No Color
 

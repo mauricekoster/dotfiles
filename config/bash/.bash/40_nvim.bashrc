@@ -21,5 +21,5 @@ function nvims() {
   export NVIM_APPNAME=$config
   echo "Selected: ${config:-default}"
 }
-
+echo "nvims done"
 bind -x '"\C-n": nvims'

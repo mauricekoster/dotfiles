@@ -9,6 +9,7 @@ if [ -z "$USER" ]; then
   USER=${USERNAME:-"<user>"}
 fi
 
+
 # if [ -f /etc/bashrc ]; then
 #         . /etc/bashrc   # --> Read /etc/bashrc, if present.
 # fi
@@ -25,44 +26,37 @@ has() {
   command -v "$1" 1>/dev/null 2>&1
 }
 
-# This function will source foo or foo.bash
-function source() {
-  #	echo "Bashlib path: $PATH"
-  command source $* 2>/dev/null
-  if [ $? -eq 1 ]; then
-    S="$1.bash"
-    #        echo "    $S"
-    shift
-    command source $S $* 2>/dev/null
-  fi
-}
-declare +x source
 
 ##
 # _source all *.bashrc files
-function dorc() {
-  local P=$1
-  shift
-  if [ "$*" != "" ]; then
-    dorc $*
-  fi
-  #echo "Sourcing $P"
-  for SOURCE in $P/*.bashrc; do
-    #echo "    $SOURCE"
-    source $SOURCE 2>/dev/null
-    
-  done
-}
-dorc ${BASH_LIB_PATH//:/ }
-#read -p "Pause. Hit Enter"
+# function dorc() {
+#   local P=$1
+#   shift
+#   if [ "$*" != "" ]; then
+#     dorc $*
+#   fi
+#   echo "Sourcing $P"
+#   for SOURCE in $P/*.bashrc; do
+#     echo "    $SOURCE"
+#     source $SOURCE 2>/dev/null
+#     #read -p "Pause. Hit Enter"    
+#   done
+# }
+# dorc ${BASH_LIB_PATH//:/ }
 
-export PATH=${PATH}:${HOME}/.local/lab/bin
+for resource in $HOME/.bash/*.bashrc; do 
+    echo ">> ${resource}"
+    source $resource
+done
 
-if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
-fi
+#export PATH=${PATH}:${HOME}/.local/lab/bin
 
-source /home/maurice/.pyenv/.pyenvrc
+#if [ -f ~/.bash_aliases ]; then
+#  . ~/.bash_aliases
+#
+#fi
+
+#source /home/maurice/.pyenv/.pyenvrc
 
 # # Local Variables:
 # # mode:shell-script
@@ -71,5 +65,5 @@ source /home/maurice/.pyenv/.pyenvrc
 # # TODO: Everything below, should be checked and moved to own .bashrc file
 
 
-source '/home/maurice/.bash_completions/pp.sh'
+#source '/home/maurice/.bash_completions/pp.sh'
 
