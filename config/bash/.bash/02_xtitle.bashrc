@@ -1,7 +1,7 @@
 function xtitle ()
 {
     case "$TERM" in
-        *term | rxvt | cygwin | msys)
+        *term | rxvt | cygwin | msys | xterm-256color )
             echo -n -e "\033]0;$*\007" ;;
         *) 
             ;;

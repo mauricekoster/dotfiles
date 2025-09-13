@@ -76,3 +76,14 @@ unpack() {
   printf "\n"
   return 1
 }
+
+function drawline() {
+  NR=${1:-79}
+  CHAR=${2:-"-"}
+  FRONTCOLOR=${3:-${WHITE}}
+  BACKCOLOR=${4:-}
+  echo -ne "${BACKCOLOR}${FRONTCOLOR}"
+  for ((i=0; i<${NR}; i++)); do echo -n ${CHAR}; done
+  echo -e "${NC}"
+}
+declare +x drawline

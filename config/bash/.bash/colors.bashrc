@@ -1,6 +1,5 @@
 # Define some colors first:
-source colors.inc
-
+function showcolors() {
     echo     "        clr  / CLR  / back"
     echo -ne "Black   ${black}${BACK_white}XXXX${NC} / ${BLACK}XXXX${NC} "
     echo -e  "/ ${BACK_black}....${NC}"
@@ -13,3 +12,4 @@ source colors.inc
     echo -e "Cyan    ${cyan}XXXX${NC} / ${CYAN}XXXX${NC} / ${BACK_cyan}    ${NC}"
     echo -e "White   ${white}XXXX${NC} / ${WHITE}XXXX${NC} / ${BACK_white}    ${NC}"
     
+}

@@ -50,9 +50,11 @@ function dorc() {
   for SOURCE in $P/*.bashrc; do
     #echo "    $SOURCE"
     source $SOURCE 2>/dev/null
+    
   done
 }
 dorc ${BASH_LIB_PATH//:/ }
+#read -p "Pause. Hit Enter"
 
 export PATH=${PATH}:${HOME}/.local/lab/bin
 
@@ -62,14 +64,12 @@ fi
 
 source /home/maurice/.pyenv/.pyenvrc
 
-# Local Variables:
-# mode:shell-script
-# sh-shell:bash
+# # Local Variables:
+# # mode:shell-script
+# # sh-shell:bash
 
-# TODO: Everything below, should be checked and moved to own .bashrc file
+# # TODO: Everything below, should be checked and moved to own .bashrc file
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 source '/home/maurice/.bash_completions/pp.sh'
+
