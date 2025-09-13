@@ -18,8 +18,9 @@ has() {
 }
 
 
-echo "LET'S INSTALL!"
+MKO_PATH=${HOME}/.dotfiles
 
-if ! has brew; then
-	echo "NO BREW"
-fi
+
+echo ""
+echo "Install terminal applications"
+source ${MKO_PATH}/install/terminal.sh
