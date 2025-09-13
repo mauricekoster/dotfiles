@@ -12,4 +12,14 @@ if [[ $EUID -eq 0 ]]; then
 	exit 1
 fi
 
+
+has() {
+  command -v "$1" 1>/dev/null 2>&1
+}
+
+
 echo "LET'S INSTALL!"
+
+if ! has brew; then
+	echo "NO BREW"
+fi
