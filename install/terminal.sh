@@ -6,4 +6,6 @@ set -e
 source ${MKO_PATH}/install/terminal-required.sh
 
 echo "START INSTALLING TERMINAL APPS"
-for installer in ${MKO_PATH}/install/terminal/*.sh; do source $installer; done
+for installer in ${MKO_PATH}/install/terminal/*.sh; do 
+    source $installer
+done

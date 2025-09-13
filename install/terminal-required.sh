@@ -11,12 +11,14 @@ if ! has brew; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 # Set Brew environment variables for install phase
-eval "$(/home/linuxbrew/.linuxbrew/bin brew shellenv)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 if ! has gum; then
+    echo "Installing gum"
     brew install gum
 fi
 
 if ! has stow; then
+    echo "Install stow"
     brew install stow
 fi
