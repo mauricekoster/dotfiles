@@ -4,7 +4,7 @@
 set -e
 
 if ! has curl; then
-    sudo apt install curl
+    sudo apt install -y curl
 fi
 
 if ! has brew; then
