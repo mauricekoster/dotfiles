@@ -22,3 +22,7 @@ if ! has stow; then
     echo "Install stow"
     brew install stow
 fi
+
+if [ ! -x $HOME/.config ]; then
+    mkdir $HOME/.config
+fi
