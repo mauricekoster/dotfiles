@@ -1,7 +1,9 @@
 #! /bin/bash
 
 if has starship; then
-    eval "$(starship init bash)"
+    if [ "$XDG_SESSION_TYPE" != "tty" ]; then
+        eval "$(starship init bash)"
+    fi
 fi
 
 
