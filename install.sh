@@ -12,14 +12,9 @@ if [[ $EUID -eq 0 ]]; then
 	exit 1
 fi
 
-
-has() {
-  command -v "$1" 1>/dev/null 2>&1
-}
-
-
-MKO_PATH=${HOME}/.dotfiles
-
+MKO_PATH=${MKO_PATH:-${HOME}/.dotfiles}
+echo "MKO_PATH: ${MKO_PATH}"
+source ${MKO_PATH}/functions.sh
 
 echo ""
 echo "Install terminal applications"
