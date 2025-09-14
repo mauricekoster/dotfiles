@@ -13,34 +13,13 @@ default_roles:
   - thorium
 
 packages:
-  brew:
-    - stow
-    - btop
-    - tmux
-    - tmuxinator
-    - eza
-    - fzf
-    - ripgrep
-    - fd
-    - bat
-    - zoxide
-    - neovim
-    - starship
-    - sqlite
-    - ranger
-    - lazygit
 
   debian:
     - kitty
     - rofi
     - picom
-    - neofetch
     - pipx
-    - unzip
-    - wget
-    - curl
     - feh
-    - psmisc
     - flatpak
     - virt-manager
     - jq
@@ -57,15 +36,10 @@ packages:
 config:
   stow:
     - qtile
-    - dircolors
-    - bash
     - kitty
-    - starship
     - rofi
     - picom
     - neovim
-    - tmux
-    - tmuxinator
     - sxhkd
 
 # Visual Studio Code

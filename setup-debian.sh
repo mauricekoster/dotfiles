@@ -44,7 +44,6 @@ nala install -y libssl-dev zlib1g-dev \
 
 # Utilities
 nala install -y \
-	unzip wget curl \
 	thunar \
 	lxappearance \
 	lxpolkit \

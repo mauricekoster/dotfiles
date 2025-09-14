@@ -15,6 +15,8 @@ BREWPACKAGES=(
     "sqlite"
     "ranger"
     "lazygit"
+    "fastfetch"
+    "pyenv"
 )
 
 for package in "${BREWPACKAGES[@]}"
