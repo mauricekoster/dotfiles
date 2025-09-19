@@ -5,11 +5,11 @@ has() {
 }
 
 mypushd() {
-	pushd "$1" 2>&1 > /dev/null
+	command pushd "$1" 2>&1 > /dev/null
 }
 
 mypopd() {
-	popd 2>&1 >/dev/null
+	command popd 2>&1 >/dev/null
 }
 
 mystow() {
