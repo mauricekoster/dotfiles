@@ -26,17 +26,15 @@ EXTENSIONS=(
 
 
 if ! has code; then
-    echo "TODO: VSCODE"
 
     # make config directory
     mkdir -p $HOME/.config/Code/User
 
-    wget https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+    wget -O code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
 
     # install vscode
-    DEB=$(ls -1 code_*.deb | head 1)
-    sudo apt install -y ./$DEB
-    rm $DEB
+    sudo apt install -y ./code.deb
+    rm -f code.deb
 
     # install extensions
     for extension in "${EXTENSIONS[@]}"
