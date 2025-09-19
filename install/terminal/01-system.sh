@@ -2,6 +2,7 @@
 
 PACKAGES=(
     "unzip"
+    "zip"
     "psmisc"
     "pipx"
     "build-essential"
