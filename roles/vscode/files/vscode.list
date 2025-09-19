@@ -1,2 +1,0 @@
-# deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
-deb [arch=amd64,arm64,armhf] http://packages.microsoft.com/repos/code stable main

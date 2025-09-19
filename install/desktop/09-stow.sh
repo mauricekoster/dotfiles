@@ -1,11 +1,13 @@
 #! /bin/bash
 
 STOW=(
-    "starship"
-    "tmux"
-    "tmuxinator"
-    "neovim"
-    "photopatcher"
+    "xdg"
+    "gtk"
+    "kitty"
+    "qtile"
+    "rofi"
+    "picom"
+    "sxhkd"
 )
 
 for package in "${STOW[@]}"

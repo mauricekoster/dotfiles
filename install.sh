@@ -19,3 +19,8 @@ source ${MKO_PATH}/functions.sh
 echo ""
 echo "Install terminal applications"
 source ${MKO_PATH}/install/terminal.sh
+
+
+echo ""
+echo "Install desktop applications"
+source ${MKO_PATH}/install/desktop.sh
