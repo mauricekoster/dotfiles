@@ -39,7 +39,7 @@ if ! has code; then
     # install extensions
     for extension in "${EXTENSIONS[@]}"
     do
-        code --install-extension --force "$extension"
+        code --force --install-extension "$extension"
     done
 
     # config
