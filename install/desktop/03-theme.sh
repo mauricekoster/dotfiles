@@ -17,7 +17,7 @@ if [ ! -d $HOME/.local/share/icons/Nordzy ]; then
 fi 
 
 # Cursors
-if [ ! -d $HOME/.icons/Nordzy-cursors ]; then
+if [ ! -d $HOME/.local/share/icons/Nordzy-cursors ]; then
     echo "Installing Nordzy-cursors"
     git clone https://github.com/alvatip/Nordzy-cursors $HOME/Nordzy-cursors 2>&1 >/dev/null
     mypushd $HOME/Nordzy-cursors

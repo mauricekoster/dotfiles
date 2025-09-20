@@ -6,4 +6,5 @@ if [ ! -f $HOME/.fonts/JetBrainsMonoNerdFont-Bold.ttf ]; then
     unzip -q -o JetBrainsMono.zip -d $HOME/.fonts
 
     fc-cache -fv
+    rm -f JetBrainsMono.zip
 fi
