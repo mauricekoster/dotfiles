@@ -1,6 +1,7 @@
 #! /bin/bash
 
 STOW=(
+    "git"
     "starship"
     "tmux"
     "tmuxinator"

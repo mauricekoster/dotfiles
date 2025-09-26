@@ -40,6 +40,7 @@ PACKAGES=(
     "xsel"
     "net-tools"
     "sxhkd"
+    "nitrogen"
 
     "fonts-glyphicons-halflings"
     "fonts-noto-color-emoji"

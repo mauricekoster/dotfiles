@@ -19,4 +19,8 @@ super + d
   rofi -modi drun,run -show drun
 
 super + x
-  rofi -show power-menu -modi power-menu:/home/maurice/.local/bin/rofi-power-menu
+  rofi -show "Power menu" -modi "Power menu":"/home/maurice/.local/bin/rofi-power-menu"
+
+super + c
+  rofi -modi "Config":"/home/maurice/.local/bin/rofi-json /home/maurice/.menus/config.json" -show "Config"
+

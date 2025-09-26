@@ -8,6 +8,7 @@ STOW=(
     "rofi"
     "picom"
     "sxhkd"
+    "nitrogen"
 )
 
 for package in "${STOW[@]}"
