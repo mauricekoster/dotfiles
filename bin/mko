@@ -1,3 +1,4 @@
 #! /bin/bash
 
+source $MKO_PATH/ascii_art.sh
 echo "MKO"
