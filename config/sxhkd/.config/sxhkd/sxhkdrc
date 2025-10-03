@@ -11,11 +11,10 @@ ctrl + alt + v
 super + ctrl + t
    notify-send "Test" "Hallo"
 
-
 super + z
-   rofi -show ssh
+  rofi -show ssh
 
-super + d 
+super + space 
   rofi -modi drun,run -show drun
 
 super + x
@@ -24,3 +23,5 @@ super + x
 super + c
   rofi -modi "Config":"/home/maurice/.local/bin/rofi-json /home/maurice/.menus/config.json" -show "Config"
 
+super + m
+  mko-menu
