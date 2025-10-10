@@ -22,6 +22,9 @@ PACKAGES=(
     "libxmlsec1-dev"
     "libffi-dev"
     "liblzma-dev"
+    "libx11-dev"
+    "libxft-dev"
+    "libxinerama-dev"
 
     "thunar"
 	"lxappearance"
