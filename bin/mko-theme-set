@@ -1,0 +1,48 @@
+#!/bin/bash
+
+if [[ -z $1 && $1 != "CNCLD" ]]; then
+  echo "Usage: mko-theme-set <theme-name>"
+  exit 1
+fi
+
+THEMES_DIR="$MKO_PATH/themes/"
+CURRENT_THEME_DIR="$HOME/.config/mko/current/theme"
+
+THEME_NAME=$(echo "$1" | sed -E 's/<[^>]+>//g' | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+THEME_PATH="$THEMES_DIR/$THEME_NAME"
+
+# Check if the theme entered exists
+if [[ ! -d "$THEME_PATH" ]]; then
+  echo "Theme '$THEME_NAME' does not exist in $THEMES_DIR"
+  exit 1
+fi
+
+CURRENT_THEME="$(basename "$(realpath "$HOME/.config/mko/current/theme")")"
+echo "${CURRENT_THEME} -> ${THEME_NAME}"
+
+if [[ "$CURRENT_THEME" == "$THEME_NAME" ]]; then
+    echo "Selected theme equals current theme. No change."
+    exit 1
+fi
+
+# # Update theme symlinks
+ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
+
+# # Change background with theme
+mko-theme-bg-next
+
+# # Restart components to apply new theme
+# omarchy-restart-waybar
+# omarchy-restart-swayosd
+# hyprctl reload
+# pkill -SIGUSR2 btop
+# makoctl reload
+
+qtile cmd-obj -o cmd -f reload_config   
+
+# # Change gnome, browser, vscode themes
+mko-theme-set-terminal
+# omarchy-theme-set-gnome
+# omarchy-theme-set-eza
+# omarchy-theme-set-browser
+# omarchy-theme-set-vscode

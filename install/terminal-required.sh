@@ -43,8 +43,8 @@ if [ ! -d $HOME/.icons ]; then
     mkdir $HOME/.icons
 fi
 
-if [ ! -d $HOME/Pictures/backgrounds ]; then
-    mkdir -p $HOME/Pictures/backgrounds
+if [ ! -d $HOME/Pictures ]; then
+    mkdir -p $HOME/Pictures
 fi
 
 if [ ! -d $HOME/Desktop ]; then

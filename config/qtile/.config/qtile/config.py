@@ -32,11 +32,10 @@ from libqtile.utils import guess_terminal
 # from qtile_extras import widget
 # from qtile_extras.widget.decorations import BorderDecoration
 
-
+import colors
 import os
 import subprocess
-
-import colors
+import json
 
 mod = "mod4"
 # terminal = guess_terminal()
@@ -134,12 +133,41 @@ for i in groups:
         ]
     )
 
-colors = colors.Nord
+colors = [
+    "#002b36", # bg
+    "#839496", # fg
+    "#073642", # color01
+    "#dc322f", # color02
+    "#859900", # color03
+    "#b58900", # color04
+    "#268bd2", # color05
+    "#d33682", # color06
+    "#2aa198"  # color15
+]
+
+theme = {
+    "background": colors[0],
+    "foreground": colors[1],
+    "selected_foreground": colors[4],
+    "border_normal": colors[0],
+    "border_focus": colors[8],
+    "highlight": colors[2],
+    "current_screen_border": colors[7],
+    "screen_border": colors[4],
+    "windowname": colors[6]
+
+}
+
+if os.path.exists('/home/maurice/.config/mko/current/theme/qtile.json'):
+    with open('/home/maurice/.config/mko/current/theme/qtile.json','r') as f:
+        override_theme =json.load(f)
+        theme.update(override_theme)
+
 
 layout_theme = {"border_width": 2,
                 "margin": 8,
-                "border_focus": colors[8],
-                "border_normal": colors[0]
+                "border_focus": theme['border_focus'],
+                "border_normal": theme['border_normal']
                 }
 
 
@@ -149,45 +177,15 @@ layouts = [
     layout.Max(
         border_width = 0,
          margin = 0,
-    ),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(**layout_theme, num_stacks=2),
-    # layout.Bsp(**layout_theme),
-    # layout.Matrix(**layout_theme),
-    # layout.MonadTall(**layout_theme),
-    # layout.MonadWide(**layout_theme),
-    # layout.RatioTile(**layout_theme),
-    # layout.Tile(**layout_theme),
-    # layout.TreeTab(
-    #     font = "JetBrainsMono Nerd Font",
-    #     fontsize = 12,
-    #     border_width = 0,
-    #     bg_color = colors[0],
-    #     active_bg = colors[8],
-    #     active_fg = colors[2],
-    #     inactive_bg = colors[1],
-    #     inactive_fg = colors[0],
-    #     padding_left = 8,
-    #     padding_x = 8,
-    #     padding_y = 6,
-    #     sections = ["ONE", "TWO", "THREE"],
-    #     section_fontsize = 10,
-    #     section_fg = colors[7],
-    #     section_top = 15,
-    #     section_bottom = 15,
-    #     level_shift = 8,
-    #     vspace = 3,
-    #     panel_width = 240
-    # ),
-    # layout.VerticalTile(**layout_theme),
-    # layout.Zoomy(**layout_theme),
+    )
+    
 ]
 
 widget_defaults = dict(
     font=font_name,
     fontsize=14,
     padding=4,
-    background=colors[0]
+    background=theme['background']
 )
 extension_defaults = widget_defaults.copy()
 
@@ -198,17 +196,17 @@ def init_widgets_list():
         widget.Prompt(
             font = font_name,
             fontsize=14,
-            foreground = colors[1]
+            foreground = theme['foreground']
         ),
 
         widget.CurrentLayout(
-            foreground = colors[4],
+            foreground = theme['selected_foreground'],
             padding = 5
         ),
         widget.TextBox(
             text = '|',
             font = font_name,
-            foreground = colors[1],
+            foreground = theme['foreground'],
             padding = 2,
             fontsize = 14
             ),
@@ -219,25 +217,25 @@ def init_widgets_list():
             padding_y = 0,
             padding_x = 1,
             borderwidth = 3,
-            active = colors[8],
-            inactive = colors[1],
+            active = theme['selected_foreground'],
+            inactive = theme['foreground'],
             rounded = False,
-            highlight_color = colors[2],
+            highlight_color = theme['highlight'],
             highlight_method = "line",
-            this_current_screen_border = colors[7],
-            this_screen_border = colors [4],
-            other_current_screen_border = colors[7],
-            other_screen_border = colors[4],
+            this_current_screen_border = theme['current_screen_border'],
+            this_screen_border = theme['screen_border'],
+            other_current_screen_border = theme['current_screen_border'],
+            other_screen_border = theme['screen_border'],
         ),
         widget.TextBox(
             text = '|',
             font = font_name,
-            foreground = colors[1],
+            foreground = theme['foreground'],
             padding = 2,
             fontsize = 14
             ),
         widget.WindowName(
-            foreground = colors[6],
+            foreground = theme['windowname'],
             max_chars = 40
         ),
         widget.Chord(
@@ -256,14 +254,8 @@ def init_widgets_list():
         ),
         widget.Spacer(length = 8),
         widget.Clock(   
-            foreground = colors[8],
+            foreground = theme['foreground'],
             format = "⏱  %A, %d %B - %H:%M",
-            # decorations=[
-            #     BorderDecoration(
-            #         colour = colors[8],
-            #         border_width = [0, 0, 2, 0],
-            #     )
-            # ],
         ),
         widget.Spacer(length = 8),
     ]

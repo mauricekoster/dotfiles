@@ -23,5 +23,11 @@ super + x
 super + c
   rofi -modi "Config":"/home/maurice/.local/bin/rofi-json /home/maurice/.menus/config.json" -show "Config"
 
-super + m
+super + alt + space
   mko-menu
+
+super + alt + t
+  mko-menu theme
+
+super + alt + b
+  mko-theme-bg-next

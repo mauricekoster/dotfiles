@@ -1,0 +1,12 @@
+{
+    "foreground": "#D8DEE9",
+    "background": "#2E3440",
+    "selected_background": "#81A1C1",
+    "selected_foreground": "#A3BE8C",
+    "border_normal": "#2E3440",
+    "border_focus": "#88C0D0",
+    "highlight": "#3B4252",
+    "current_screen_border": "#B48EAD",
+    "screen_border": "#A3BE8C",
+    "windowname": "#81A1C1"
+}

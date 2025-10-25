@@ -28,6 +28,6 @@ dex &
 
 
 # Wallpapers
-#feh --bg-fill ${HOME}/dotfiles/moria-wallpaper.jpg &
+feh --bg-fill ${HOME}/.config/mko/current/background &
 
-nitrogen --restore
+

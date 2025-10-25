@@ -35,7 +35,6 @@ PACKAGES=(
     "kitty"
     "rofi"
     "picom"
-    "pipx"
     "feh"
     "flatpak"
     "virt-manager"
