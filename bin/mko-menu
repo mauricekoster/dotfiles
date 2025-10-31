@@ -1,5 +1,8 @@
 #! /bin/env bash
 
+terminal() {
+  qtile run-cmd -f kitty "$@"
+}
 
 # Set to true when going directly to a submenu, so we can exit directly
 BACK_TO_EXIT=false
