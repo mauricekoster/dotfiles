@@ -36,5 +36,6 @@
         "{hexdiff}:/**/*.*": "hexEditor.hexedit",
         "*.DAT": "hexEditor.hexedit"
     },
+    "docker.extension.enableComposeLanguageServer": false,
     
 }

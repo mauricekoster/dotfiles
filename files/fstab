@@ -1,0 +1,4 @@
+//homeserver/Home    /home/maurice/Share    cifs    rw,vers=3.0,credentials=/home/maurice/.smbcredentials,dir_mode=0775,file_mode=0775,uid=1000,gid=1000
+//homeserver/Music    /home/maurice/Music    cifs    rw,vers=3.0,credentials=/home/maurice/.smbcredentials,dir_mode=0775,file_mode=0775,uid=1000,gid=1000
+//homeserver/TV    /home/maurice/TV    cifs    rw,vers=3.0,credentials=/home/maurice/.smbcredentials,dir_mode=0775,file_mode=0775,uid=1000,gid=1000
+//homeserver/Photos    /home/maurice/Photos    cifs    rw,vers=3.0,credentials=/home/maurice/.smbcredentials,dir_mode=0775,file_mode=0775,uid=1000,gid=1000
