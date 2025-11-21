@@ -1,4 +1,4 @@
-mkdir $HOME/.config/mko/current
+mkdir -p $HOME/.config/mko/current
 
 # Set initial theme
 mkdir -p ~/.config/mko/current
